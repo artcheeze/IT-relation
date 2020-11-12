@@ -1,0 +1,5 @@
+@import 'innovasive-ui-react/src/styles/index.css';
+
+@layer base {}
+
+@layer utilities {}
