@@ -1,5 +1,3 @@
-import '@fortawesome/fontawesome-pro/css/all.css'
-
 import './index.css'
 import './fonts.css'
 

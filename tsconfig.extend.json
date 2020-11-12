@@ -9,7 +9,8 @@
       "@core/hooks/*": ["core/hooks/*"],
       "@core/models/*": ["core/models/*"],
       "@core/pages/*": ["core/pages/*"],
-      "@core/services/*": ["core/services/*"]
+      "@core/services/*": ["core/services/*"],
+      "@features/*": ["features/*"]
     }
   }
 }
