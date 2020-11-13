@@ -1,14 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import _ from 'lodash'
+import { rankingContext } from '../contexts/ranking-context'
+import { useObserver } from 'mobx-react-lite'
 
 export const ScoreComponent = (props: any) => {
   //-----------------------
+  //  CONTEXT
+  //-----------------------
+  const context = useContext(rankingContext)
+  //-----------------------
+  //  EFFECT
+  //-----------------------
+  useEffect(() => {
+    context.fetchRanking()
+  }, [])
+  //-----------------------
   //  STATE
   //-----------------------
-  const [collapse, setCollapse] = useState(true)
+  const [collapse, setCollapse] = useState(false)
   //-----------------------
   //  RENDER
   //-----------------------
-  return (
+  return useObserver(() => (
     <div
       className="relative w-full overflow-hidden transition-all duration-300 ease-in-out bg-blue"
       style={{
@@ -27,21 +40,30 @@ export const ScoreComponent = (props: any) => {
         />
       </div>
       <div className="relative z-10 flex justify-around px-40 mt-24">
-        <TopComponent color="bg-grey-400 mt-56" data={{ team: 'IT24', point: 40 }} />
-        <TopComponent color="bg-yellow-400 " data={{ team: 'IT24', point: 40 }} />
-        <TopComponent color="bg-red-400 mt-56" data={{ team: 'IT24', point: 40 }} />
+        <TopComponent color="bg-grey-400 mt-56" data={{ team: '?', point: 0 }} />
+        <TopComponent color="bg-yellow-400 " data={{ team: '?', point: 0 }} />
+        <TopComponent color="bg-red-400 mt-56" data={{ team: '?', point: 0 }} />
       </div>
       <div
-        className="relative z-10 w-2/3 h-full mx-auto transition-all duration-300 ease-in-out delay-100 bg-white shadow-md rounded-3"
+        className="relative z-10 w-2/3 h-full px-32 pt-8 mx-auto overflow-y-scroll transition-all duration-300 ease-in-out delay-100 bg-white shadow-md pb-640 rounded-3"
         style={{ marginTop: collapse ? '100px' : '-20px' }}
       >
-        AA
+        <div className="flex justify-between mb-8">
+          <p className="font-bold text-blue">Team</p>
+          <p className="font-bold text-blue">Point</p>
+        </div>
+        {_.map(context.ranking, (item, key) => (
+          <div className="flex justify-between">
+            <p className="text-blue">{key}</p>
+            <p className="text-yellow-400"> {item}</p>
+          </div>
+        ))}
       </div>
       <div className="absolute bottom-0 z-50 text-red-200" onClick={() => setCollapse(!collapse)} style={{ marginLeft: '49vw' }}>
         กด
       </div>
     </div>
-  )
+  ))
 }
 
 const TopComponent = (props: any) => {

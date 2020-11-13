@@ -22,6 +22,7 @@
     "axios": "^0.20.0",
     "camelcase-keys": "^6.2.2",
     "craco-alias": "^2.1.1",
+    "firebase": "^8.0.1",
     "innovasive-ui-react": "^0.3.2",
     "js-cookie": "^2.2.1",
     "mobx": "^5.15.6",
