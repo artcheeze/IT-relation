@@ -1,5 +1,6 @@
 import { RouteComponentProps } from '@reach/router'
 import React from 'react'
+
 import { ScoreComponent } from '../components/score_component'
 import { TimeTableComponent } from '../components/time_table_component'
 

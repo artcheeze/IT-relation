@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
 import _ from 'lodash'
-import { rankingContext } from '../contexts/ranking-context'
 import { useObserver } from 'mobx-react-lite'
+import React, { useContext, useEffect, useState } from 'react'
+
+import { rankingContext } from '../contexts/ranking-context'
 
 export const ScoreComponent = (props: any) => {
   //-----------------------
@@ -48,19 +49,20 @@ export const ScoreComponent = (props: any) => {
         className="relative z-10 w-2/3 h-full px-32 pt-8 mx-auto overflow-y-scroll transition-all duration-300 ease-in-out delay-100 bg-white shadow-md pb-640 rounded-3"
         style={{ marginTop: collapse ? '100px' : '-20px' }}
       >
+        {' '}
         <div className="flex justify-between mb-8">
           <p className="font-bold text-blue">Team</p>
           <p className="font-bold text-blue">Point</p>
         </div>
         {_.map(context.ranking, (item, key) => (
-          <div className="flex justify-between">
+          <div key={key} className="flex justify-between">
             <p className="text-blue">{key}</p>
             <p className="text-yellow-400"> {item}</p>
           </div>
         ))}
       </div>
-      <div className="absolute bottom-0 z-50 text-red-200" onClick={() => setCollapse(!collapse)} style={{ marginLeft: '49vw' }}>
-        กด
+      <div className="absolute bottom-0 z-50 pb-8 text-red-200" onClick={() => setCollapse(!collapse)} style={{ marginLeft: '49vw' }}>
+        <i className={`far fa-dot-circle  ${collapse ? 'text-white' : 'text-blue'}`}></i>
       </div>
     </div>
   ))

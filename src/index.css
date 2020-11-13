@@ -1,4 +1,5 @@
 @import 'innovasive-ui-react/src/styles/index.css';
+@import './animate.css';
 
 @layer base {}
 
